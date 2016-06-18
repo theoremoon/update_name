@@ -14,8 +14,12 @@ import	std.stdio,
 		std.range,
 		std.datetime,
 		core.thread,
-		std.experimental.logger;
+		std.experimental.logger,
+		std.getopt;
 import  twitter4d;
+
+string logfile = "update_name.log",
+	   settingsfile = "settings.json";
 
 long getId(Twitter4D client)
 {
@@ -74,7 +78,7 @@ string walkSubstring(string s, ulong len)
 }
 void update_name(Twitter4D client, JSONValue tweet, string username, string true_name)
 {
-	auto logf = new FileLogger("update_name.log");
+	auto logf = new FileLogger(logfile);
 	string[] terms = parse_text(tweet.object["text"].str);
 	if (! terms.canFind("@" ~ username)) {
 		return;
@@ -101,10 +105,20 @@ void update_name(Twitter4D client, JSONValue tweet, string username, string true
 	}
 }
 
-void main()
+void main(string[] args)
 {
-	auto logf = new FileLogger("update_name.log");
-	auto settings = readText("settings.json").parseJSON;
+
+	auto help = getopt(args,
+			"logfile", &logfile,
+			"settingsfile", &settingsfile
+		  );
+
+	if (help.helpWanted) {
+		defaultGetoptPrinter("update_name", help.options);
+	}
+
+	auto logf = new FileLogger(logfile);
+	auto settings = readText(settingsfile).parseJSON;
 	scope(exit) {
 		logf.log("[-]update_name stopped.");
 	}
