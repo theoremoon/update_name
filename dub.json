@@ -1,0 +1,9 @@
+{
+	"name": "update_name",
+	"description": "update your twitter name in according to reply",
+	"authors": ["theoldmoon0602"],
+	"license": "MIT",
+	"dependencies": {
+		"twitter4d": "~>0.0.65"
+	}
+}
