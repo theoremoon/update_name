@@ -115,6 +115,7 @@ void main(string[] args)
 
 	if (help.helpWanted) {
 		defaultGetoptPrinter("update_name", help.options);
+		return;
 	}
 
 	auto logf = new FileLogger(logfile);
