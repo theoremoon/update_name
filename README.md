@@ -1,5 +1,9 @@
 # update_name
 
+<a href="https://code.dlang.org/packages/update_name" title="Go to update_name"><img src="https://img.shields.io/dub/v/update_name.svg" alt="Dub version"></a>
+
+<a href="https://code.dlang.org/packages/update_name" title="Go to update_name"><img src="https://img.shields.io/dub/dt/update_name.svg" alt="Dub downloads"></a>
+
 This is update_name for twitter.
 
 ## Usage
